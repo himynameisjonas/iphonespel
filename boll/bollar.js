@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	boll = new Ball(10,10,5,90)
+	boll = new Ball(10,10,1,45)
 	function update () {
 		
 		boll.move();
@@ -22,7 +22,8 @@ function Ball (x,y,s,d) {
 		css("width",this.radius*2+"px").
 		css("height",this.radius*2+"px").
 		css("background-color","#"+this.color).
-		css("position","absolute");
+		css("position","absolute").
+		attr("class","ball");
 		
 	$("body").append(this.dom);
 	
