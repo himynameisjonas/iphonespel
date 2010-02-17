@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>jQTouch &beta;</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css">
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=0;">
+        <script src="jqtouch/jquery.1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="jqtouch/jqtouch.min.js" type="application/x-javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+
+			var jQT = new $.jQTouch({
+				icon: 'bc_icon.png',
+				addGlossToIcon: false,
+				touchSelector: '#swipeme',
+				statusBar: 'black',
+				initializeTouch: 'body',
+			});
+			
+			$(function(){
+				alert('start')
+				$('body').bind('touchmove', function(e){e.preventDefault()});
+				/*
+				$('#swipeme').bind('swipe', function(evt, data) {
+					$(this).html('You swiped <strong>' + data.direction + '/' + data.deltaX +':' + data.deltaY + '</strong>!')
+				});
+				*/
+				$('#swipeme').swipe(function(evt, data) {
+					$(this).html('You swiped <strong>' + data.direction + '/' + data.deltaX +':' + data.deltaY + '</strong>!')
+				});
+				/*
+				$('body').bind('swipe', function(evt, data) {
+					$(this).html('You swiped <strong>' + data.direction + '/' + data.deltaX +':' + data.deltaY + '</strong>!')
+				});
+				*/
+				
+			});
+
+
+        </script>
+		<style type="text/css">
+		<!—-
+		    * {
+		        -webkit-touch-callout: none;
+		    }
+		-->
+		</style>
+    </head>
+    <body id="hej">
+	<div id="swipeme" style="width:320px; height: 480px; background: red">
+		
+	</div>
+    </body>
+</html>
