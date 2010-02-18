@@ -44,7 +44,7 @@ function Ball (x,y,s,d) {
 		css("height",this.radius*2+"px").
 		css("background-color","#"+this.color).
 		css("position","absolute").
-		attr("class","Ball");
+		attr("class","ball");
 		
 	$("body").append(this.dom);
 	
