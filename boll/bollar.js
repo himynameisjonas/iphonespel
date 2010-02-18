@@ -1,12 +1,14 @@
 $(document).ready(function(){
 	spel = new Playfield(15,320,480);
 	
+	
 	function update () {
 		
 		spel.update();
 		
 		t = setTimeout(function(){ update();},10)
 	}
+	
 	update();
 })
 
@@ -29,10 +31,12 @@ function Playfield (balls,x,y) {
 
 function Ball (x,y,s,d) {
 	var that = this; // Fullösning för this-referenser inom events
+	
 	this.xpos = x;
 	this.ypos = y;
-	this.speed = s;
+	this.speed = s; // pixlar
 	this.direction = d; // NOLL är rakt åt höger, 0-360 grader medurs
+	
 	this.radius = 5;
 	this.color = "333333";
 	this.dom = $("<div />").
@@ -40,9 +44,10 @@ function Ball (x,y,s,d) {
 		css("height",this.radius*2+"px").
 		css("background-color","#"+this.color).
 		css("position","absolute").
-		attr("class","ball");
+		attr("class","Ball");
 		
 	$("body").append(this.dom);
+	
 	
 	this.move = function () {
 		new_x = that.xpos+Math.cos((that.direction/180)*Math.PI)*that.speed;
@@ -53,6 +58,10 @@ function Ball (x,y,s,d) {
 	
 	this.draw = function () {
 		that.dom.css("left",that.xpos).css("top",that.ypos)
+	}
+	
+	this.collision = function(){
+		// TODO check if we overlap w/any other object in the parent container?
 	}
 	
 	this.collision_wall = function (x,y) {
