@@ -7,13 +7,47 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">	
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=0;">
 
+
 	<title>BOLLAR &beta;</title>
 	
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css">
 	<link rel="stylesheet" href="bollar.css" type="text/css" />
 	
 	<script src="../jqtouch/jquery.1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+
+	var jQT = new $.jQTouch({
+		icon: 'bc_icon.png',
+		addGlossToIcon: false,
+		touchSelector: '#playground',
+		statusBar: 'black',
+		initializeTouch: 'body'
+	});
+	
+	$(function(){
+		alert('start')
+		$('body').bind('touchmove', function(e){e.preventDefault()});
+		/*
+		$('#swipeme').bind('swipe', function(evt, data) {
+			$(this).html('You swiped <strong>' + data.direction + '/' + data.deltaX +':' + data.deltaY + '</strong>!')
+		});
+		*/
+		$('#playground').swipe(function(evt, data) {
+			$(this).html('You swiped <strong>' + data.direction + '/' + data.deltaX +':' + data.deltaY + '</strong>!')
+		});
+		/*
+		$('body').bind('swipe', function(evt, data) {
+			$(this).html('You swiped <strong>' + data.direction + '/' + data.deltaX +':' + data.deltaY + '</strong>!')
+		});
+		*/
+		
+	});
+
 	<script src="bollar.js" type="text/javascript" charset="utf-8"></script>
+	
+	
+	
+	
 	
 </head>
 
