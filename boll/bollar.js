@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	spel = new Playfield(15,320,480);
+	spel = new Playfield(7,320,480);
 	
 	
 	function update () {
@@ -19,7 +19,7 @@ function Playfield (balls,x,y) {
 	this.ysize = y;
 	
 	for (var i = 0; i < balls; i++){
-		this.balls[i] = new Ball(150,150,5,Math.random()*360); //Math.random()*360
+		this.balls[i] = new Ball(150,150,2,Math.random()*360); //Math.random()*360
 	}
 	
 	this.update = function () {
@@ -85,7 +85,6 @@ function Ball (x,y,s,d) {
 	}
 	
 	this.update = function () {
-		$("#info").text(that.direction)
 		that.collision_wall(320,480);
 		that.move();
 		that.draw();
