@@ -1,6 +1,8 @@
 $(document).ready(function(){
-	whacky = new Playfield(4,320,6,480);
-	whacky.update();
+	$('body').bind('touchmove', function(e){e.preventDefault()});
+	whacky = new Playfield(4,320,6,465);
+	whacky.start();
+	
 })
 
 function Square(x,y,playfield) {
@@ -9,8 +11,8 @@ function Square(x,y,playfield) {
 	var that = this;
 	this.playfield = playfield;
 	this.dom = $("<div />").
-		css("width", x+"px").
-		css("height",y+"px").
+		css("width", (x-2)+"px").
+		css("height",(y-2)+"px").
 		attr("class","square");
 	this.active = false;
 	this.timeout = null;
@@ -67,6 +69,7 @@ function Playfield (xsq,x,ysq,y) {
 	}
 	
 	this.update = function (){
+		clearTimeout(that.t)
 		that.squares[parseInt(Math.random()*that.ysquares)][parseInt(Math.random()*that.xsquares)].set_active();
 		that.t = setTimeout(function(){ that.update();},5000)
 	}
@@ -78,6 +81,24 @@ function Playfield (xsq,x,ysq,y) {
 	
 	this.gameover = function () {
 		clearTimeout(that.t);
-		alert("Antal träffar: "+that.hits+"\nAntal missar: "+that.misses)
+		$("#info span").html("Antal träffar: "+that.hits+"<br/>Antal missar: "+that.misses+"<br/><br/>Klicka för att spela igen")
+		$("#info").slideDown("fast");
+		$("#info").unbind("click").click(function(){
+			$("#info").slideUp("fast");
+			that.hits = 0;
+			that.misses = 0;
+			that.update();
+		})
+	}
+	
+	this.start = function () {
+		clearTimeout(that.t)
+
+		$("#info span").text("Klicka för att starta")
+		$("#info").show();
+		$("#info").unbind("click").click(function(){
+			$("#info").slideUp("fast");
+			that.update();
+		})
 	}
 }

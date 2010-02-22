@@ -2,13 +2,14 @@
 	-moz-border-radius: 20px;
 	-webkit-border-radius: 20px;
 	float: left;
-	background-color: blue;
+	background-color: #A7121E;
+	margin: 1px;
 }
 
 #playfield {
 	width: 320px;
-	height: 480px;
-	background-color: grey;
+	height: 465px;
+	background-color: #00232A;
 }
 
 body {
@@ -17,4 +18,17 @@ body {
 
 * {
 	-webkit-touch-callout: none;
+}
+#info {
+	text-align: center;
+	font-family: "helvetica neue", helvetica;
+	display:none;
+	width: 320px;
+	height: 465px;
+	font-weight: lighter;
+	text-transform: uppercase;
+}
+#info span {
+	display: block;
+	margin-top: 140px;
 }
