@@ -5,18 +5,20 @@ $(document).ready(function(){
 	
 })
 
-function Square(x,y,playfield) {
+function Square(x,y,playfield,color) {
 	
 	// "constructor"
 	var that = this;
 	this.playfield = playfield;
+	this.color = color;
 	this.dom = $("<div />").
 		css("width", (x-2)+"px").
 		css("height",(y-2)+"px").
+		css("background-color","#"+this.color).
 		attr("class","square");
 	this.active = false;
 	this.timeout = null;
-	
+
 	this.dom.click(function(){
 		if (that.active) {
 			clearTimeout(that.timeout);
@@ -40,7 +42,7 @@ function Square(x,y,playfield) {
 	
 	this.set_inactive = function(){
 		this.active = false;
-		this.dom.css("background-color",null)
+		this.dom.css("background-color","#"+this.color)
 	}
 	
 }
@@ -58,12 +60,13 @@ function Playfield (xsq,x,ysq,y) {
 	this.t = null;
 	this.hits = 0;
 	this.misses = 0;
-	
+	this.colors = ["F2DFCE","F29849","653A4B","689BA6","D9415D"];
 	this.squares = new Array(ysq);
+	
 	for (var i = 0; i < ysq; i++){
 		this.squares[i] = new Array( xsq );
-		for (var j = 0; j<xsq; j++ ) {	
-			that.squares[i][j] = new Square( x/xsq, y/ysq, that );	
+		for (var j = 0; j<xsq; j++ ) {
+			that.squares[i][j] = new Square( x/xsq, y/ysq, that, this.colors[parseInt(Math.random()*this.colors.length)] );	
 			$("#playfield").append( that.squares[i][j].dom );
 		}
 	}
